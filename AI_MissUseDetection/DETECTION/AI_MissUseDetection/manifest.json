@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "AI Misuse Detector",
+  "version": "1.0",
+  "description": "Detects and blocks malicious AI prompts in real-time using machine learning.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["tfjs_model/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

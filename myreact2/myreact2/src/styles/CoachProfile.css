@@ -1,0 +1,107 @@
+*{
+    margin:0px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+
+}
+
+.ProfileCoach{
+    height: 87.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #efeff3, #dbdee8);
+}
+
+.ProfileCoachCont{
+    height: 500px;
+    width:65%;
+    
+    max-width:550px;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+
+
+}
+.cont{
+    display: flex;
+    padding: 5px;
+}
+img{
+    height:100px;
+
+}
+
+.ProfileHead{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+.ProfileHeading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+input{
+    height:25px;
+    margin-bottom: 5px;
+    padding: 4px;
+    border-radius: 5px;
+}
+.leftcont{
+    width:50%;
+    height:100%;
+    margin-left: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap:7px;
+}
+.rightcont{
+    width:50%;
+    height:100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap:7px;
+
+}
+.GenderCont-child{
+    display: flex;
+    width:40px;
+    margin-top: 10px;
+    font-size: 13px;
+    margin-bottom: 7px;
+
+    
+}
+.GenderLabelInput{
+    margin-top: 3px;
+    height:15px;
+}
+.GenderLabel{
+    margin-left:5px;
+    margin-right: 10px;
+    margin-top: 3px;
+    margin-bottom: 9px;
+
+}
+.LoginButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right:5%;
+}
+
+.CoachSignup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right:5%;
+}

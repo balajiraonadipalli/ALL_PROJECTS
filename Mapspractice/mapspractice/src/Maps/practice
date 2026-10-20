@@ -1,0 +1,402 @@
+
+import { useState, useRef, useEffect, useContext } from "react";
+import { GoogleMap, useLoadScript, Autocomplete } from "@react-google-maps/api";
+import "./Maps.css";
+import { AppContext } from "../Context/Context";
+
+const containerStyle = {
+  width: "80%",
+  height: "80vh",
+  margin: "20px 0px 30px 0px",
+  borderRadius: "20px",
+};
+
+const defaultCenter = {
+  lat: 18.1067, // Vizianagaram center
+  lng: 83.3956,
+};
+
+const libraries = ["places", "marker"];
+
+// Fixed place
+const fixedPlace = {
+  name: "Vizianagaram Railway Station",
+  position: { lat: 18.1124, lng: 83.4115 },
+};
+
+function Maps() {
+  const { isLoaded } = useContext(AppContext);
+  const [map, setMap] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [markers, setMarkers] = useState([]);
+  const autocompleteRef = useRef(null);
+
+  // Haversine formula to calculate distance
+  const getDistanceInKm = (coord1, coord2) => {
+    const toRad = (value) => (value * Math.PI) / 180;
+    const R = 6371;
+    const dLat = toRad(coord2.lat - coord1.lat);
+    const dLng = toRad(coord2.lng - coord1.lng);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(coord1.lat)) *
+        Math.cos(toRad(coord2.lat)) *
+        Math.sin(dLng / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return (R * c).toFixed(2); // in KM
+  };
+
+  const onLoad = (mapInstance) => {
+    setMap(mapInstance);
+
+    // Add fixed marker
+    if (window.google?.maps?.marker?.AdvancedMarkerElement) {
+      const marker = new window.google.maps.marker.AdvancedMarkerElement({
+        position: fixedPlace.position,
+        map: mapInstance,
+        title: fixedPlace.name,
+      });
+
+      const infoWindow = new window.google.maps.InfoWindow({
+        content: `<div><strong>${fixedPlace.name}</strong></div>`,
+      });
+
+      marker.addEventListener("click", () => {
+        infoWindow.open(mapInstance, marker);
+      });
+
+      setMarkers([marker]);
+    }
+  };
+
+  const addMarker = (position) => {
+    if (map && window.google?.maps?.marker?.AdvancedMarkerElement) {
+      const newMarker = new window.google.maps.marker.AdvancedMarkerElement({
+        position,
+        map,
+      });
+
+      setMarkers((prevMarkers) => [...prevMarkers, newMarker]);
+    }
+  };
+
+  const handleMapClick = (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    const location = { lat, lng };
+    setSelectedLocation(location);
+    addMarker(location);
+  };
+
+  const handlePlaceSelect = () => {
+    if (autocompleteRef.current) {
+      const place = autocompleteRef.current.getPlace();
+      if (!place.geometry || !place.geometry.location) return;
+
+      const location = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      };
+
+      map.panTo(location);
+      map.setZoom(15);
+      setSelectedLocation(location);
+      addMarker(location);
+    }
+  };
+
+  if (!isLoaded) return <div>Loading...</div>;
+
+  return (
+    <div className="MapsContainer">
+      {/* Search box */}
+      <Autocomplete
+        onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
+        onPlaceChanged={handlePlaceSelect}
+      >
+        <input type="text" placeholder="Search for a place" className="search-box" />
+      </Autocomplete>
+
+      {/* Google Map */}
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={defaultCenter}
+        zoom={12}
+        onLoad={onLoad}
+        onClick={handleMapClick}
+        options={{
+          mapId: "dc94429164479620", // Optional custom map ID
+        }}
+      />
+
+      {/* Distance Display */}
+      {selectedLocation && (
+        <div className="distance-display">
+          Distance from <strong>{fixedPlace.name}</strong>:{" "}
+          {getDistanceInKm(fixedPlace.position, selectedLocation)} km
+          
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Maps;
+
+
+
+ {/* ✅ Search Box */}
+      {/* <Autocomplete
+        onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
+        onPlaceChanged={handlePlaceSelect}
+      >
+        <input
+          type="text"
+          placeholder="Search for a place"
+          
+        />
+      </Autocomplete> */}
+
+      {/* ✅ Google Map */}
+     
+      {/* <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={12}
+        onLoad={onLoad}
+        onClick={handleMapClick}
+        options={{
+          mapId: "dc94429164479620", 
+           mapTypeId: mapType,
+        }}
+      /> */}
+
+
+
+      
+// import { useState, useRef, useEffect, useContext } from "react";
+// import { GoogleMap, Circle, Marker } from "@react-google-maps/api";
+// import "./Maps.css";
+// import { AppContext } from "../Context/Context";
+// import Alerts from "./Alerts";
+// import {
+//   getFirestore,
+//   doc,
+//   getDoc,
+//   collection,
+//   getDocs,
+// } from "firebase/firestore";
+// import { firebaseApp } from "../firebase";
+
+// const containerStyle = {
+//   width: "900px",
+//   height: "70vh",
+//   margin: "20px 0px 30px 0px",
+//   borderRadius: "20px"
+// };
+
+// const radiusInMeters = 50;
+
+// function Maps() {
+//   const { location, setLocation, isLoaded } = useContext(AppContext);
+//   const [map, setMap] = useState(null);
+//   const [deviceCenter, setDeviceCenter] = useState(null);
+//   const [firebaseError, setFirebaseError] = useState(null);
+//   const [audioUnlocked, setAudioUnlocked] = useState(false);
+//   const [trackedLocations, setTrackedLocations] = useState([]);
+
+//   // Get static location from Firestore (center point)
+//   useEffect(() => {
+//     const fetchStaticLocation = async () => {
+//       const db = getFirestore(firebaseApp);
+//       const staticRef = doc(db, "users", "5od2V5fml9SmMtBILhWmm9s12163");
+
+//       try {
+//         const staticSnap = await getDoc(staticRef);
+//         if (!staticSnap.exists()) {
+//           setFirebaseError("Static user not found");
+//           return;
+//         }
+
+//         const staticLoc = staticSnap.data().locationDetails;
+//         const staticPoint = {
+//           lat: parseFloat(staticLoc.latitude),
+//           lng: parseFloat(staticLoc.longitude),
+//         };
+
+//         setDeviceCenter(staticPoint);
+//         if (map) map.panTo(staticPoint);
+//       } catch (err) {
+//         console.error("Error fetching static center:", err);
+//         setFirebaseError("Failed to fetch static location");
+//       }
+//     };
+
+//     fetchStaticLocation();
+//   }, [map]);
+
+//   // Fetch all users and check who is inside radius
+//   useEffect(() => {
+//     if (!map || !deviceCenter) return;
+
+//     const fetchAllUsers = async () => {
+//       try {
+//         const db = getFirestore(firebaseApp);
+//         const querySnap = await getDocs(collection(db, "users"));
+//         const inRange = [];
+
+//         querySnap.forEach(docSnap => {
+//           const data = docSnap.data();
+//           const loc = data.locationDetails;
+
+//           if (loc?.latitude && loc?.longitude) {
+//             const point = {
+//               lat: parseFloat(loc.latitude),
+//               lng: parseFloat(loc.longitude),
+//             };
+
+//             if (isPointInCircle(point, deviceCenter, radiusInMeters)) {
+//               inRange.push(point);
+//             }
+//           }
+//         });
+
+//         setTrackedLocations(inRange);
+//         console.log(inRange);
+//         setFirebaseError(null);
+
+//         if (audioUnlocked && inRange.length > 0) {
+//           playAlertSound();
+//         }
+//       } catch (err) {
+//         console.error("Error fetching users:", err);
+//         setFirebaseError(`Firestore error: ${err.message}`);
+//       }
+//     };
+
+//     fetchAllUsers();
+//     const interval = setInterval(fetchAllUsers, 8000);
+//     return () => clearInterval(interval);
+//   }, [map, deviceCenter, audioUnlocked]);
+
+//   const onLoad = (mapInstance) => {
+//     console.log("Map loaded");
+//     setMap(mapInstance);
+//   };
+
+//   const isPointInCircle = (point, circleCenter, radius) => {
+//     if (!window.google?.maps?.geometry) {
+//       console.warn("Google Maps geometry library not loaded");
+//       return false;
+//     }
+
+//     return window.google.maps.geometry.spherical.computeDistanceBetween(
+//       new window.google.maps.LatLng(point.lat, point.lng),
+//       new window.google.maps.LatLng(circleCenter.lat, circleCenter.lng)
+//     ) <= radius;
+//   };
+
+//   const playAlertSound = () => {
+//     const audio = document.getElementById("alertAudio");
+//     if (audio) {
+//       audio.currentTime = 0;
+//       audio.play().catch((e) => console.warn("🎧 Audio play failed:", e));
+//     }
+//   };
+
+//   const unlockAudio = () => {
+//     const audio = document.getElementById("alertAudio");
+//     if (audio) {
+//       audio.play()
+//         .then(() => {
+//           audio.pause();
+//           audio.currentTime = 0;
+//           setAudioUnlocked(true);
+//           console.log("🔊 Audio unlocked");
+//         })
+//         .catch((e) => {
+//           console.warn("🔒 Audio unlock failed:", e);
+//         });
+//     }
+//   };
+
+//   if (!isLoaded) return <div>Loading Google Maps...</div>;
+//   if (!deviceCenter) return <div>Getting your location...</div>;
+
+//   return (
+//     <div>
+//       <div className="MapsContainer">
+//         {firebaseError && (
+//           <div className="error-banner">Error: {firebaseError}</div>
+//         )}
+
+//         <GoogleMap
+//           mapContainerStyle={containerStyle}
+//           center={deviceCenter}
+//           zoom={15}
+//           onLoad={onLoad}
+//           options={{
+//             mapId: "dc94429164479620",
+//             mapTypeId: "roadmap",
+//           }}
+//         >
+//           {/* Static Location Radius */}
+//           <Circle
+//             center={deviceCenter}
+//             radius={radiusInMeters}
+//             options={{
+//               strokeColor: "#4a90e2",
+//               strokeOpacity: 0.8,
+//               strokeWeight: 2,
+//               fillColor: "#4a90e2",
+//               fillOpacity: 0.15,
+//             }}
+//           />
+
+//           {/* Static Marker */}
+//           <Marker
+//             position={deviceCenter}
+//             icon={{
+//               url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+//             }}
+//           />
+
+//           {/* Users within radius */}
+//           {trackedLocations.map((loc, index) => (
+//             <Marker
+//               key={`tracked-${index}`}
+//               position={loc}
+//               icon={{
+//                 url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+//                 scaledSize: new window.google.maps.Size(30, 30),
+//               }}
+//             />
+//           ))}
+//         </GoogleMap>
+
+//         <div className="alerts">
+//           <div className="buttonenable">
+//             {!audioUnlocked && (
+//               <button onClick={unlockAudio} style={{ marginBottom: "10px", padding: "8px 16px" }}>
+//                 🔊 Enable Sound
+//               </button>
+//             )}
+
+//             <audio
+//               id="alertAudio"
+//               preload="auto"
+//               onCanPlayThrough={() => console.log("✅ Audio can play")}
+//               onError={(e) => console.error("❌ Audio load failed", e)}
+//             >
+//               <source src="/buzzer.mp3" type="audio/mpeg" />
+//               Your browser does not support the audio element.
+//             </audio>
+//           </div>
+//           <Alerts />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Maps;

@@ -1,0 +1,43 @@
+div textarea{
+    height:20vh;
+    width:300px;
+    resize: none;
+    padding:20px;
+    font-size: 15px;
+    margin:20px;
+    border-radius: 20px;
+}
+.addHomeDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addHomeDiv button{
+    height:40px;
+    width:200px;
+    border-radius: 5px;
+    border: none;
+    background-color:  rgb(154, 154, 204);
+    color: white;
+}
+.addHomeDiv input{
+    height:40px;
+    width:290px;
+    padding: 10px;
+    margin-bottom: 30px;
+    outline:.5px solid rgb(151, 151, 239);
+    font-size: 15px;
+    font-weight:550;
+    border:.5px solid rgb(145, 145, 174);
+    border-radius: 20px;
+
+}
+
+.addHomeDiv button:hover{
+    background-color:  rgb(151, 151, 239);
+}
+
+.addHomeDiv button:active{
+    background-color: rgb(154, 235, 154);
+}

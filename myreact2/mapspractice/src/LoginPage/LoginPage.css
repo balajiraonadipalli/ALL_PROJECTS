@@ -1,0 +1,51 @@
+.container{
+    
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageCont{
+    height:380px;
+    width:350px;
+    background-color: white;
+    border:1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+}
+
+.name,.Email,.Password{
+    height:70px;
+    padding:5px;
+}
+.inputs label{
+    padding-bottom: 5px;
+}
+.inputs div input{
+    outline: none;
+    padding:10px;
+    width:200px;
+    border-radius: 5px;
+}
+
+
+.container button{
+    width:70%;
+    height:50px;
+    background-color: rgb(135, 131, 131);
+    padding:10px;
+    color:white;
+    border:none;
+    border-radius: 10px;
+}
+span{
+    color:red;
+}
+span:hover{
+    cursor: pointer;
+}

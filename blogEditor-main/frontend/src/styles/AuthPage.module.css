@@ -1,0 +1,89 @@
+body{
+  background-color: cornsilk;
+}
+.authContainer {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #f9fafb;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.authContainer h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.authContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.authContainer input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.authContainer input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.authContainer button[type="submit"] {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.authContainer button[type="submit"]:hover {
+  background-color: #2563eb;
+}
+
+.switchButton {
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.switchButton:hover {
+  text-decoration: underline;
+}
+
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid #28a745; /* green */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

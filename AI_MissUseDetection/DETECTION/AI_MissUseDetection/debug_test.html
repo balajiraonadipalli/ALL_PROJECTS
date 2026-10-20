@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Debug Extension Test</h1>
+    <input type="text" id="testInput" placeholder="Type here">
+    <textarea id="testTextarea" placeholder="Or here"></textarea>
+    
+    <script>
+        // Check if extension is loaded
+        setTimeout(function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            console.log('Found inputs:', inputs.length);
+            inputs.forEach((input, index) => {
+                console.log(`Input ${index}:`, input.style.border);
+            });
+        }, 2000);
+    </script>
+</body>
+</html>

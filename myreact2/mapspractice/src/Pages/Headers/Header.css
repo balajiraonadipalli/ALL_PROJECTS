@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+}
+
+
+.Headercontainer{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(188, 188, 244);
+}
+.Headercontainer h3{
+    font-size: 20px;
+    font-weight: 500;
+    padding:20px 0px;
+
+}
+.Headercontainer ul{
+    display: flex;
+    gap:35px;
+    padding: 18px;
+}
+
+.Headercontainer li{
+    text-decoration: none;
+    list-style: none;
+    padding: 5px;
+}
+hr{
+    border: 1px solid  rgb(154, 154, 204);
+}
+
+.Link{
+    text-decoration: none;
+
+}

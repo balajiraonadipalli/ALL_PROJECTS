@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Stats</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .debug-section { background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 8px 16px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .reset-btn { background: #dc3545; }
+        .stats-display { background: white; padding: 10px; border: 1px solid #ccc; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h2>🔧 Debug Extension Stats</h2>
+    
+    <div class="debug-section">
+        <h3>Current Stats</h3>
+        <div id="currentStats" class="stats-display">Loading...</div>
+        <button onclick="checkStats()">Refresh Stats</button>
+        <button onclick="resetStats()" class="reset-btn">Reset Stats</button>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Recent Activity</h3>
+        <div id="recentActivity" class="stats-display">Loading...</div>
+        <button onclick="checkActivity()">Refresh Activity</button>
+        <button onclick="clearActivity()" class="reset-btn">Clear Activity</button>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Test ML Analysis</h3>
+        <input type="text" id="testText" placeholder="Enter text to test ML analysis" style="width: 300px; padding: 5px;">
+        <button onclick="testML()">Test ML</button>
+        <div id="mlResult" class="stats-display">Results will appear here...</div>
+    </div>
+    
+    <script>
+        function checkStats() {
+            chrome.storage.local.get(['stats'], function(data) {
+                const stats = data.stats || { total: 0, blocked: 0 };
+                document.getElementById('currentStats').innerHTML = `
+                    <strong>Total Scans:</strong> ${stats.total}<br>
+                    <strong>Blocked:</strong> ${stats.blocked}<br>
+                    <strong>Success Rate:</strong> ${stats.total > 0 ? ((stats.total - stats.blocked) / stats.total * 100).toFixed(1) : 100}%
+                `;
+            });
+        }
+        
+        function resetStats() {
+            chrome.storage.local.set({ stats: { total: 0, blocked: 0 } }, function() {
+                alert('Stats reset!');
+                checkStats();
+            });
+        }
+        
+        function checkActivity() {
+            chrome.storage.local.get(['history'], function(data) {
+                const history = data.history || [];
+                const recent = history.slice(-10).reverse();
+                
+                let html = '<strong>Last 10 Activities:</strong><br>';
+                if (recent.length === 0) {
+                    html += 'No activity yet';
+                } else {
+                    recent.forEach((log, index) => {
+                        const time = new Date(log.timestamp).toLocaleTimeString();
+                        const confidence = log.confidence ? Math.round(log.confidence * 100) : 'N/A';
+                        html += `${index + 1}. ${log.result.toUpperCase()} - ${log.text.substring(0, 30)}... (${confidence}%) - ${time}<br>`;
+                    });
+                }
+                document.getElementById('recentActivity').innerHTML = html;
+            });
+        }
+        
+        function clearActivity() {
+            chrome.storage.local.set({ history: [] }, function() {
+                alert('Activity cleared!');
+                checkActivity();
+            });
+        }
+        
+        function testML() {
+            const text = document.getElementById('testText').value;
+            if (!text) {
+                alert('Please enter some text to test');
+                return;
+            }
+            
+            chrome.runtime.sendMessage({
+                action: 'analyzeText',
+                text: text
+            }, function(response) {
+                if (chrome.runtime.lastError) {
+                    document.getElementById('mlResult').innerHTML = 'Error: ' + chrome.runtime.lastError.message;
+                } else {
+                    const confidence = Math.round(response.confidence * 100);
+                    const maliciousProb = Math.round(response.malicious_probability * 100);
+                    document.getElementById('mlResult').innerHTML = `
+                        <strong>ML Analysis Result:</strong><br>
+                        Prediction: ${response.result}<br>
+                        ML Prediction: ${response.ml_prediction}<br>
+                        Confidence: ${confidence}%<br>
+                        Malicious Probability: ${maliciousProb}%<br>
+                        Safe Probability: ${Math.round(response.safe_probability * 100)}%
+                    `;
+                }
+            });
+        }
+        
+        // Load stats on page load
+        checkStats();
+        checkActivity();
+    </script>
+</body>
+</html>

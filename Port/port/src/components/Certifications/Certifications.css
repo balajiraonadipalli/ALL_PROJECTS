@@ -1,0 +1,66 @@
+/* Main Container */
+.certificationsCont {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    /* 3D Depth */
+    background-color: transparent;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Individual Card Wrapper */
+.CardE {
+    position: absolute;
+    top: 65%;
+    /* Moved down further for more spacing */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 85vw;
+    /* Ensure it fits within mobile viewport with margins */
+    max-width: 500px;
+    /* Limit max size on desktop */
+    height: auto;
+    opacity: 0;
+    /* Hidden by default, JS handles visibility */
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    will-change: transform, opacity;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.CardE:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.ImgCard {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.CardE:hover .ImgCard {
+    filter: grayscale(0%);
+}
+
+@media (max-width: 768px) {
+    .CardE {
+        top: 55%;
+        /* Move up closer to header (was 65%) */
+    }
+}

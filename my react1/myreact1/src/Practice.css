@@ -1,0 +1,58 @@
+.container{
+    height: 100vh ;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background-color: aliceblue;
+}
+.hello{
+    height:600px;
+    width:70%;
+    max-width: 800px;
+    border:1px solid black;
+    border-radius: 20px;
+    padding:20px;
+}
+.message{
+    height:80%;
+    width:100%;
+    overflow-y: scroll;
+
+}
+.inputs{
+    height:35px;
+    width:70%;
+    max-width: 500px;
+    margin:30px;
+    border-radius: 20px;
+    padding:10px;
+    font-size: 20px;
+
+}
+.query{
+    display: flex;
+    justify-content: flex-end;
+    padding:10px;
+}
+.queryName{
+    border-radius: 2px solid black;
+    height:10px;
+}
+.response{
+   
+    display: "flex";
+    border-radius: 1px solid black;
+    padding:10px;
+}
+
+.inputfield{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    height:60px;
+    width:70px;
+    border-radius:50%;
+}

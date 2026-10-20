@@ -1,0 +1,40 @@
+.MapsContainer{
+    padding: 15px;
+    max-width: 100%;
+    min-width: 500px;
+    margin: 5px;
+    border:3px solid rgb(230, 234, 222);
+    border-radius: 10px ;
+    outline: none;
+    font-size: 15px;
+    display: flex;
+    background-color:  "0xFF3B6790";
+   
+}
+.btn{
+    height:60px;
+    width:60px;
+    font-size: 27px;
+    border-radius: 50%;
+    position: relative;
+    background-color: "0xFF3B6790e";
+    right:-250px;
+    
+}
+
+.MapsContainer GoogleMap{
+    width:100%;
+}
+.buttonenable{
+    height:100px;
+    width:200px;
+}
+.alerts{
+    width:100%;
+    display: "flex";
+    height:500px;
+    width:500px;
+    align-items: center;
+    padding-left: 100px;
+    
+}

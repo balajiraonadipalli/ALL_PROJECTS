@@ -1,0 +1,80 @@
+body
+{
+    background:rgb(175, 175, 243);
+}
+
+.toDo
+{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 100px auto;
+    padding:50px;
+    width:50%;
+    height:80%;
+    box-sizing: content-box;
+    border-radius:30px;
+    background:linear-gradient(yellow, pink);
+}
+h1{
+    font-size: 2rem;
+}
+.Input
+{
+    margin-left: 30px;
+    padding:10px;
+    flex-wrap: nowrap;
+    width:200px;
+    border-radius: 5px;
+}
+.addBut
+{
+    padding:10px;
+    border-radius:5px;
+    margin:3px;
+    background-color: rgb(135, 223, 135);
+    border: none;
+}
+.delete-but
+{
+    padding:10px;
+    background-color: rgb(234, 87, 87);
+    border-radius:5px;
+    margin:3px;
+    border:none;
+}
+.boxes
+{
+    width:100%;
+}
+.up,.down
+{
+    background-color: rgb(157, 207, 249);
+    border:none;
+    border-radius:5px;
+    padding:8px 15px;
+    margin:4px;
+    transition: 0.5 ease;
+}
+
+.up:hover,.down:hover
+{
+    background-color: rgb(121, 188, 243);
+   
+}
+ol{
+    list-style-type: none;
+}
+li
+{
+    font-style: none;
+    padding:5px 0px;
+    padding-left:none;
+    width:100%;
+    font-weight:bold;
+    border:1px solid black;
+    border-radius:10px;
+    margin:10px;
+    flex-wrap: nowrap;
+    text-wrap: nowrap;
+}
+

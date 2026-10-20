@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  server-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps
+        working-directory: server
+        run: npm ci
+      - name: Run tests
+        working-directory: server
+        env:
+          PORT: 4000
+          MONGO_URI: mongodb://localhost:27017/test
+          JWT_SECRET: test
+          CLIENT_ORIGIN: http://localhost:5173
+        run: npm test
+
+

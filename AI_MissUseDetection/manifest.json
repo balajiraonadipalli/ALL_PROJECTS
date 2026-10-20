@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Sentiment Analysis Extension",
+  "version": "1.0",
+  "description": "Analyzes sentiment in input fields and provides feedback",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["http://localhost:5000/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Sentiment Analysis"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

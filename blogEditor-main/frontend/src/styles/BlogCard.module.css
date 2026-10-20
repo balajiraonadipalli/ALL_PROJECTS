@@ -1,0 +1,35 @@
+/* BlogCard.module.css */
+
+.blogCard {
+  border: 1px solid gray;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.blogCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.blogCard h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.blogCard p {
+  margin: 0 0 10px 0;
+  color: #444;
+  line-height: 1.4;
+}
+
+.tag {
+  margin-right: 8px;
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}

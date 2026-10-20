@@ -1,0 +1,13 @@
+*{
+    font-size: 18px;
+    
+}
+
+@media screen and (min-width: 781px) {
+    .container {
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        height:100px;
+    }
+}

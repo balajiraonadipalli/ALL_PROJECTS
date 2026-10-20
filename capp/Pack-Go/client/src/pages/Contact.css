@@ -1,0 +1,100 @@
+/* Contact Page Styling */
+.contact-container {
+    max-width: 650px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255, 250, 245, 0.9); /* Soft peach with transparency */
+    backdrop-filter: blur(10px); /* Background blur effect */
+    color: #333;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Image */
+body {
+    background: url('https://source.unsplash.com/1600x900/?scenery,nature') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Title & Paragraph Styling */
+.contact-container h2 {
+    font-size: 30px;
+    color: #3a3a3a;
+    margin-bottom: 12px;
+}
+
+.contact-container p {
+    font-size: 17px;
+    margin-bottom: 22px;
+    color: #666;
+}
+
+/* Form Styling */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-form label {
+    font-weight: 500;
+    color: #444;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #d4d4d4;
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent fields */
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px); /* Subtle blur on inputs */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #84c07d;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(132, 192, 125, 0.4);
+}
+
+.contact-form button {
+    background: #84c07d;
+    color: white;
+    font-size: 18px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #6da96a;
+}
+
+/* Success Message */
+.success-message {
+    background: rgba(212, 237, 218, 0.8);
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 1px solid #c3e6cb;
+    backdrop-filter: blur(5px);
+}
+
+.contact-info{
+    margin-top: 20px;
+}

@@ -1,0 +1,20 @@
+.MapsContainer input{
+    padding: 15px;
+    width:300px;
+    margin: 5px;
+    border:3px solid rgb(230, 234, 222);
+    border-radius: 10px ;
+    outline: none;
+    font-size: 15px;
+   
+}
+.MapsContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color:  rgb(188, 188, 244);
+}
+
+.MapsContainer GoogleMap{
+    width:100%;
+}

@@ -1,0 +1,243 @@
+.MyselfCont {
+    flex: 1;
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 1rem;
+    /* Reduced bottom padding from 4rem */
+    background-color: transparent;
+    /* Allow tech background to show */
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
+}
+
+.Imgcont {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    border: 4px solid var(--border-light);
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+}
+
+.Imgcont:hover {
+    filter: grayscale(0%);
+    border-color: var(--accent-primary);
+}
+
+.About {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.intro-text {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--accent-primary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.professional-desc h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, #ffffff, #aaaaaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 2rem 0 1.5rem;
+    letter-spacing: -1px;
+}
+
+.professional-desc p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    /* Muted for professionalism */
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    font-weight: 300;
+}
+
+.About div pre {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.About div pre h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .MyselfCont {
+        padding: 6rem 1.5rem 3rem 1.5rem;
+        /* Symmetric padding */
+        min-height: auto;
+        overflow-x: hidden;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Force Image Container to center */
+    .Image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .About {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 5px;
+        margin: 0 auto;
+        /* Horizontal centering */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .About div pre {
+        white-space: normal !important;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .About div pre h1 {
+        font-size: 1.8rem;
+        /* Reduced from 2rem */
+        margin: 0 1px;
+    }
+
+    .professional-desc {
+        width: 95%;
+        /* Wider but shifted left */
+        max-width: 100%;
+        margin: 0;
+        margin-left: -40px;
+        /* Force left alignment */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .professional-desc h1 {
+        font-size: 1.3rem;
+        /* Further reduced */
+        line-height: 1.4;
+        margin: 1.5rem 0 1rem;
+        text-align: center;
+        width: 100%;
+        overflow-wrap: break-word;
+        /* Ensure wrapping */
+        word-wrap: break-word;
+        word-break: break-word;
+        /* Force break if needed */
+        hyphens: auto;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .Imgcont {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 0;
+        border-radius: 12px;
+        /* Rectangular shape with soft corners */
+        /* Handled by .Image */
+    }
+
+    .professional-desc p {
+        font-size: 1rem;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        overflow-wrap: anywhere;
+        /* Aggressive wrapping */
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    .About div pre h1 {
+        font-size: 1.5rem;
+        /* Fit long name on narrow screen */
+    }
+
+    .professional-desc h1 {
+        font-size: 1.4rem;
+    }
+
+    .About p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Resume Button Container */
+.resume-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Resume Button Styling */
+.resume-btn {
+    padding: 12px 36px;
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #ffffff 100%);
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.resume-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+    background: #fff;
+    color: var(--bg-primary);
+}
+
+@media (max-width: 768px) {
+    .resume-btn {
+        padding: 10px 30px;
+        font-size: 0.9rem;
+    }
+}

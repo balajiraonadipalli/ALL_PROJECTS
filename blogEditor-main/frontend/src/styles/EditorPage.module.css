@@ -1,0 +1,49 @@
+/* EditorPage.module.css */
+
+.editorPageContainer {
+  /* max-width: 1320px; */
+  /* margin: 40px auto; */
+  padding: 20px;
+  background-color: cornsilk;
+  border-radius: 2px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  margin-bottom: 20px;
+  transition: color 0.2s ease-in-out;
+  color: #555;
+}
+
+.backButton:hover {
+  color: #007bff;
+}
+
+.backIcon {
+  font-size: 1.4rem;
+  margin-right: 6px;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+  border-left: 4px solid #007bff;
+  padding-left: 12px;
+  background-color: #e6f0ff;
+  border-radius: 4px;
+}
+
+.timestamp p {
+  margin: 4px 0;
+}
+
+/* Optional: if you uncomment heading later */

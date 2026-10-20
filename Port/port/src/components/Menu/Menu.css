@@ -1,0 +1,157 @@
+/* Main Container: High Z-Index to stay on top */
+.menu-container {
+  position: relative;
+  z-index: 9999;
+}
+
+/* =========================================
+   Desktop Menu Styles
+   ========================================= */
+.statusBar {
+  height: 5rem;
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.header {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-header);
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+}
+
+.header:hover,
+.header.active {
+  color: var(--accent-primary);
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-primary);
+  transition: width 0.3s ease;
+}
+
+.header:hover::after,
+.header.active::after {
+  width: 2rem;
+}
+
+/* =========================================
+   Mobile Bottom Navigation (Glass Pill)
+   ========================================= */
+.mobile-menu {
+  position: fixed;
+  bottom: 25px;
+  /* Floating above button */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 380px;
+  height: 70px;
+
+  /* Glassmorphism */
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+
+  /* Layout */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 0 10px;
+}
+
+.mobile-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
+  border-radius: 20px;
+}
+
+.mobile-item .icon {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+  transition: transform 0.3s ease;
+}
+
+.mobile-item .label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* Active State */
+.mobile-item.active {
+  color: white;
+  transform: translateY(-5px);
+  /* Lift up */
+}
+
+.mobile-item.active .icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.mobile-item.active .label {
+  opacity: 1;
+  font-weight: 700;
+}
+
+/* Hover Effect */
+.mobile-item:active {
+  transform: scale(0.95);
+}
+
+/* Hide desktop menu on mobile */
+@media (max-width: 768px) {
+  .statusBar {
+    display: none;
+  }
+}
+
+/* Hide mobile menu on desktop */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none;
+  }
+}

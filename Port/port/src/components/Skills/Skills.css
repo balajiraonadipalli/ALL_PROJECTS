@@ -1,0 +1,160 @@
+.skills-section {
+    min-height: auto;
+    /* Allow content to fit naturally */
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    /* Reduced top/bottom padding */
+
+    overflow: hidden;
+    /* layout safety */
+    z-index: 5;
+    /* Ensure above background */
+}
+
+.skills-container {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    margin-right: 2rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #fff, #999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Button */
+.show-skills-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #fff 100%);
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.show-skills-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+/* Buckets Layout */
+.buckets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    perspective: 1000px;
+}
+
+.bucket {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 300px;
+    /* Bucket width */
+    flex-grow: 1;
+    max-width: 350px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.bucket:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-primary);
+}
+
+.bucket-title {
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    padding-bottom: 0.5rem;
+}
+
+.bucket-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Skill Badge Animation */
+.skill-badge {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* Animation Initial State */
+    opacity: 0;
+    /* Move to random start position defined in inline style */
+    transform: translate(var(--x), var(--y)) scale(0.5);
+
+    animation: sortIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    /* Stagger based on index */
+    animation-delay: calc(var(--i) * 0.05s);
+}
+
+.skill-badge:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1) !important;
+    /* Override animation final state on hover */
+    /* Note: !important needed because animation sets transform */
+}
+
+/* The Sort Animation */
+@keyframes sortIn {
+    0% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(0.5);
+    }
+
+    60% {
+        opacity: 1;
+        /* Overshoot slightly */
+        transform: translate(0, 0) scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        /* Land in bucket */
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .bucket {
+        width: 100%;
+        max-width: 100%;
+    }
+}

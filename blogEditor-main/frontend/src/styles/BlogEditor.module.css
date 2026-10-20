@@ -1,0 +1,73 @@
+/* BlogEditor.module.css - Elegant Variant */
+
+.editorContainer {
+  max-width: 1320px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  background: #fefefe;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.editorContainer h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.editorContainer input[type="text"],
+.editorContainer textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #fafafa;
+  margin-bottom: 1.2rem;
+  transition: border-color 0.2s ease;
+}
+
+.editorContainer input:focus,
+.editorContainer textarea:focus {
+  border-color: #6c5ce7;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.editorContainer textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.editorContainer div {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.editorContainer button {
+  padding: 10px 22px;
+  background-color: #34d058;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editorContainer button:hover {
+  background-color: #218838;
+}
+
+.editorContainer p {
+  text-align: center;
+  margin-top: 1rem;
+  color: #27ae60;
+  font-weight: 500;
+  font-style: italic;
+}

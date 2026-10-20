@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Test</title>
+</head>
+<body>
+    <h2>Background Script Test</h2>
+    <button onclick="testBackground()">Test Background Script</button>
+    <button onclick="testLogAttempt()">Test Log Attempt</button>
+    <div id="result"></div>
+    
+    <script>
+        function testBackground() {
+            if (chrome && chrome.runtime) {
+                chrome.runtime.sendMessage({action: 'test', message: 'Hello from test page'}, function(response) {
+                    document.getElementById('result').innerHTML = 'Background response: ' + JSON.stringify(response);
+                });
+            } else {
+                document.getElementById('result').innerHTML = 'Chrome runtime not available';
+            }
+        }
+        
+        function testLogAttempt() {
+            if (chrome && chrome.runtime) {
+                chrome.runtime.sendMessage({
+                    action: 'logAttempt',
+                    payload: {
+                        result: 'malicious',
+                        text: 'test content',
+                        timestamp: Date.now(),
+                        url: window.location.href,
+                        detectedKeyword: 'test'
+                    }
+                }, function(response) {
+                    document.getElementById('result').innerHTML = 'Log attempt response: ' + JSON.stringify(response);
+                });
+            } else {
+                document.getElementById('result').innerHTML = 'Chrome runtime not available';
+            }
+        }
+    </script>
+</body>
+</html>

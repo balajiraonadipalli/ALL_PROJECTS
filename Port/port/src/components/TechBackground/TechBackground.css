@@ -1,0 +1,48 @@
+.tech-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Behind content, above body bg */
+    overflow: hidden;
+    pointer-events: none;
+    /* Non-interactive */
+}
+
+.tech-word {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.8);
+    /* Base white, opacity handled inline */
+    font-family: 'Courier New', monospace;
+    /* Code font */
+    font-weight: 700;
+    white-space: nowrap;
+    user-select: none;
+    will-change: transform;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+
+    /* Animation definition */
+    animation-name: drift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(var(--moveX), var(--moveY)) rotate(10deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .tech-word {
+        filter: blur(0.5px);
+        /* Soft blur on mobile */
+    }
+}

@@ -1,0 +1,58 @@
+.AboutMeCont {
+    display: flex;
+    width: 100%;
+    padding: 4rem 2rem;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-light);
+}
+
+@media (max-width: 768px) {
+    .AboutMeCont {
+        padding: 3rem 0rem 9rem;
+        /* Bottom padding clears mobile menu */
+        gap: 1.5rem;
+    }
+
+    .AboutMecards {
+        width: 60px;
+        height: 60px;
+        font-size: 0.8rem;
+    }
+}
+
+.AboutMecards {
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    /* Ensure opacity is 1 by default, ease in handled by AOS or transition */
+    border: 2px solid var(--border-dark);
+    border-radius: 50%;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    background-color: var(--bg-tertiary);
+    cursor: pointer;
+}
+
+.AboutMecards:hover {
+    transform: translateY(-5px) scale(1.1);
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+}
+
+/* Remove specific iconic colors for monochrome theme */
+.insta,
+.hacker,
+.link,
+.leetcode-card svg {
+    color: inherit !important;
+    /* Force icons to inherit inherited color */
+    transition: color 0.3s ease;
+}

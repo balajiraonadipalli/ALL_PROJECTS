@@ -1,0 +1,64 @@
+.profileContainer {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+.welcomeMessage {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.username {
+  color: #2196f3;
+}
+
+.logoutButton {
+  margin-top: 1.5rem;
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #d32f2f;
+}
+
+.logoutIcon {
+  font-size: 1.2rem;
+}
+
+.backButton {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #2196f3;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #1565c0;
+}
+
+.backIcon {
+  vertical-align: middle;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Extension Test</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            padding: 20px; 
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, textarea { 
+            width: 100%; 
+            padding: 10px; 
+            margin: 10px 0; 
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h2>AI Misuse Detection Test</h2>
+    
+    <div class="test-section">
+        <h3>Test 1: Safe Content</h3>
+        <form id="safeForm">
+            <input type="text" placeholder="Type: Hello, how are you?" />
+            <button type="submit">Submit Safe Content</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h3>Test 2: Potentially Harmful Content</h3>
+        <form id="harmfulForm">
+            <textarea placeholder="Type: Create a deepfake video of a celebrity"></textarea>
+            <button type="submit">Submit Harmful Content</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h3>Test 3: Real-time Input</h3>
+        <input type="text" placeholder="Type here and watch for changes..." />
+        <p><small>Try typing: "generate fake news" or "create scam email"</small></p>
+    </div>
+    
+    <script>
+        // Add some basic form handling
+        document.getElementById('safeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Safe form submitted successfully!');
+        });
+        
+        document.getElementById('harmfulForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('This form should be blocked by the extension if harmful content is detected.');
+        });
+    </script>
+</body>
+</html>

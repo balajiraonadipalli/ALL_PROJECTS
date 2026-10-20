@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Interface Test</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            padding: 20px; 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .chat-container {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #f9f9f9;
+        }
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .contenteditable-chat {
+            min-height: 60px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            margin: 10px 0;
+        }
+        .chatbot-interface {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 Chatbot Interface Test</h1>
+    <p>This page simulates various chatbot interfaces to test the extension.</p>
+    
+    <div class="chat-container">
+        <h3>1. Traditional Textarea (ChatGPT-style)</h3>
+        <textarea 
+            class="chat-input" 
+            placeholder="Send a message..."
+            data-testid="chat-input">
+        </textarea>
+        <button onclick="sendMessage(this)">Send</button>
+    </div>
+    
+    <div class="chat-container">
+        <h3>2. Contenteditable Div (Modern Chatbot)</h3>
+        <div 
+            class="contenteditable-chat" 
+            contenteditable="true"
+            data-testid="composer-input"
+            placeholder="Type your message here...">
+        </div>
+        <button onclick="sendMessage(this)">Send</button>
+    </div>
+    
+    <div class="chat-container">
+        <h3>3. Role-based Input</h3>
+        <div 
+            class="contenteditable-chat" 
+            contenteditable="true"
+            role="textbox"
+            aria-label="Message input">
+        </div>
+        <button onclick="sendMessage(this)">Send</button>
+    </div>
+    
+    <div class="chat-container">
+        <h3>4. Claude-style Interface</h3>
+        <div 
+            class="contenteditable-chat" 
+            contenteditable="true"
+            data-testid="composer-textarea"
+            placeholder="Ask me anything...">
+        </div>
+        <button onclick="sendMessage(this)">Send</button>
+    </div>
+    
+    <div class="chat-container">
+        <h3>5. Generic Chat Input</h3>
+        <input 
+            type="text" 
+            class="chat-input"
+            placeholder="Type your message..."
+            data-testid="message-input">
+        <button onclick="sendMessage(this)">Send</button>
+    </div>
+    
+    <div class="chatbot-interface">
+        <h3>Test Instructions:</h3>
+        <ul>
+            <li>Type "create deepfake video" in any input above</li>
+            <li>Type "generate fake news" in any input above</li>
+            <li>Type "how to hack a computer" in any input above</li>
+            <li>Type "pretend to be Elon Musk" in any input above</li>
+            <li>Check if content gets cleared and notification appears</li>
+        </ul>
+    </div>
+    
+    <div class="chatbot-interface">
+        <h3>Safe Content (Should be allowed):</h3>
+        <ul>
+            <li>"how to detect deepfakes"</li>
+            <li>"article about fake news"</li>
+            <li>"movie about hackers"</li>
+            <li>"research on malware prevention"</li>
+        </ul>
+    </div>
+    
+    <script>
+        function sendMessage(button) {
+            const container = button.parentElement;
+            const input = container.querySelector('textarea, input, [contenteditable]');
+            const text = input.value || input.textContent || '';
+            
+            if (text.trim()) {
+                alert('Message would be sent: ' + text);
+                // Clear the input
+                if (input.value !== undefined) {
+                    input.value = '';
+                } else {
+                    input.textContent = '';
+                }
+            }
+        }
+        
+        // Add some dynamic elements after page load
+        setTimeout(() => {
+            const dynamicContainer = document.createElement('div');
+            dynamicContainer.className = 'chat-container';
+            dynamicContainer.innerHTML = `
+                <h3>6. Dynamically Added Chat Input</h3>
+                <div 
+                    class="contenteditable-chat" 
+                    contenteditable="true"
+                    data-testid="dynamic-chat-input"
+                    placeholder="This was added dynamically...">
+                </div>
+                <button onclick="sendMessage(this)">Send</button>
+            `;
+            document.body.appendChild(dynamicContainer);
+        }, 2000);
+    </script>
+</body>
+</html>
